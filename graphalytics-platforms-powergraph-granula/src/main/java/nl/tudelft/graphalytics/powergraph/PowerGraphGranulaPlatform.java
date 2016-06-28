@@ -15,10 +15,11 @@
  */
 package nl.tudelft.graphalytics.powergraph;
 
+import nl.tudelft.granula.modeller.platform.Powergraph;
+import nl.tudelft.graphalytics.domain.Benchmark;
 import nl.tudelft.graphalytics.granula.GranulaAwarePlatform;
 import nl.tudelft.graphalytics.powergraph.reporting.logging.PowerGraphLogger;
-import nl.tudelft.pds.granula.modeller.powergraph.job.PowerGraph;
-import nl.tudelft.pds.granula.modeller.model.job.JobModel;
+import nl.tudelft.granula.modeller.job.JobModel;
 import java.nio.file.Path;
 
 /**
@@ -32,19 +33,20 @@ public final class PowerGraphGranulaPlatform extends PowerGraphPlatform implemen
 		POWERGRAPH_BINARY_NAME = "./bin/granula/main";
 	}
 
+
 	@Override
-	public void setBenchmarkLogDirectory(Path logDirectory) {
+	public void preBenchmark(Benchmark benchmark, Path logDirectory) {
 		PowerGraphLogger.startPlatformLogging(logDirectory.resolve("OperationLog").resolve("driver.logs"));
 	}
 
 	@Override
-	public void finalizeBenchmarkLogs(Path logDirectory) {
+	public void postBenchmark(Benchmark benchmark, Path logDirectory) {
 		PowerGraphLogger.stopPlatformLogging();
 	}
 
 	@Override
-	public JobModel getGranulaModel() {
-		return new PowerGraph();
+	public JobModel getPerformanceModel() {
+		return new JobModel(new Powergraph());
 	}
 
 }
