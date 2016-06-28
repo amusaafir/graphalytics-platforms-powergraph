@@ -1,7 +1,3 @@
-
-
-
-
 function buildLibraries {
 
 module unload intel-mpi
