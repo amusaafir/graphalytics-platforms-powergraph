@@ -19,7 +19,7 @@ function buildProgram {
 
 module unload intel-mpi
 module unload gcc
-module load openmpi
+module load openmpi/open64/64/1.10.1 
 module load openmpi/gcc/64/1.10.1 
 module list
 
