@@ -18,8 +18,11 @@ package nl.tudelft.graphalytics.powergraph;
 import nl.tudelft.granula.modeller.platform.Powergraph;
 import nl.tudelft.graphalytics.domain.Benchmark;
 import nl.tudelft.graphalytics.granula.GranulaAwarePlatform;
-import nl.tudelft.graphalytics.powergraph.reporting.logging.PowerGraphLogger;
 import nl.tudelft.granula.modeller.job.JobModel;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.nio.file.Path;
 
 /**
@@ -36,17 +39,42 @@ public final class PowerGraphGranulaPlatform extends PowerGraphPlatform implemen
 
 	@Override
 	public void preBenchmark(Benchmark benchmark, Path logDirectory) {
-		PowerGraphLogger.startPlatformLogging(logDirectory.resolve("OperationLog").resolve("driver.logs"));
+		startPlatformLogging(logDirectory.resolve("OperationLog").resolve("driver.logs"));
 	}
 
 	@Override
 	public void postBenchmark(Benchmark benchmark, Path logDirectory) {
-		PowerGraphLogger.stopPlatformLogging();
+		stopPlatformLogging();
 	}
 
 	@Override
-	public JobModel getPerformanceModel() {
+	public JobModel getJobModel() {
 		return new JobModel(new Powergraph());
+	}
+
+
+	private static PrintStream console;
+
+	public static void startPlatformLogging(Path fileName) {
+		console = System.out;
+		try {
+			File file = null;
+			file = fileName.toFile();
+			file.getParentFile().mkdirs();
+			file.createNewFile();
+			FileOutputStream fos = new FileOutputStream(file);
+			PrintStream ps = new PrintStream(fos);
+			System.setOut(ps);
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new IllegalArgumentException("cannot redirect to output file");
+		}
+		System.out.println("StartTime: " + System.currentTimeMillis());
+	}
+
+	public static void stopPlatformLogging() {
+		System.out.println("EndTime: " + System.currentTimeMillis());
+		System.setOut(console);
 	}
 
 }

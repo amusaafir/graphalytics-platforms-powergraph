@@ -1,4 +1,4 @@
-package nl.tudelft.granula;
+package nl.tudelft.granula.modeller;
 
 import nl.tudelft.granula.archiver.GranulaArchiver;
 import nl.tudelft.granula.modeller.entity.BasicType.ArchiveFormat;
