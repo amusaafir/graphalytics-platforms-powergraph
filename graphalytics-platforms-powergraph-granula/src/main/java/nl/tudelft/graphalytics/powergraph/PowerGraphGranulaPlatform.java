@@ -39,7 +39,7 @@ public final class PowerGraphGranulaPlatform extends PowerGraphPlatform implemen
 
 	@Override
 	public void preBenchmark(Benchmark benchmark, Path logDirectory) {
-		startPlatformLogging(logDirectory.resolve("OperationLog").resolve("driver.logs"));
+		startPlatformLogging(logDirectory.resolve("platform").resolve("driver.logs"));
 	}
 
 	@Override
