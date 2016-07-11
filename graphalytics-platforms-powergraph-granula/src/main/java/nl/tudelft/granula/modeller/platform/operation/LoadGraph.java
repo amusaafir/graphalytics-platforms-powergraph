@@ -34,10 +34,7 @@ public class LoadGraph extends RealtimeOperationModel {
 
         addLinkingRule(new UniqueParentLinking(Type.PowerGraph, Type.Job));
 
-        String summary = "A PGX.D job executes three child operations: GraphLoading, Execution, and PostProcessing. " +
-                "First, graph data is loaded from storage to memory, and optimized in data structure during the GraphLoading operation. " +
-                "Then a graph algorithm is executed on the in-memory graph data during the Execution operation. " +
-                "Finally the graph data is offloaded and metrics are calculated during the PostProcessing operation.";
+        String summary = "LoadGraph.";
         addInfoDerivation(new SimpleSummaryDerivation(11, summary));
 
         addVisualDerivation(new MainInfoTableVisualization(1,

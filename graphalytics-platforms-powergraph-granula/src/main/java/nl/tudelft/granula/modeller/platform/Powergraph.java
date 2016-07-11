@@ -69,7 +69,7 @@ public class Powergraph extends PlatformModel {
             Job job = platform.getJob();
             Overview overview = job.getOverview();
 
-            overview.setDescription("This is a Graphmat job.");
+            overview.setDescription("This is a Powergraph job.");
 
             Operation jobOper = platform.findOperation(Type.PowerGraph, Type.Job);
             jobOper.parentId = null;

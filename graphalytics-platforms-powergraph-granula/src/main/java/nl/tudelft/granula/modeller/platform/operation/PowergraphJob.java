@@ -39,10 +39,7 @@ public class PowergraphJob extends nl.tudelft.granula.modeller.platform.operatio
         addInfoDerivation(new JobEndTimeDerivation(1));
         addInfoDerivation(new DurationDerivation(2));
 
-        String summary = "A PGX.D job executes three child operations: GraphLoading, Execution, and PostProcessing. " +
-                "First, graph data is loaded from storage to memory, and optimized in data structure during the GraphLoading operation. " +
-                "Then a graph algorithm is executed on the in-memory graph data during the Execution operation. " +
-                "Finally the graph data is offloaded and metrics are calculated during the PostProcessing operation.";
+        String summary = "PowergraphJob.";
         addInfoDerivation(new SimpleSummaryDerivation(11, summary));
 
         addVisualDerivation(new MainInfoTableVisualization(1,
