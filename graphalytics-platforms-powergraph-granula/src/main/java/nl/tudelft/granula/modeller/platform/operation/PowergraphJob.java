@@ -22,7 +22,7 @@ import nl.tudelft.granula.modeller.rule.derivation.time.DurationDerivation;
 import nl.tudelft.granula.modeller.rule.derivation.time.JobEndTimeDerivation;
 import nl.tudelft.granula.modeller.rule.derivation.time.JobStartTimeDerivation;
 import nl.tudelft.granula.modeller.rule.linking.EmptyLinking;
-import nl.tudelft.granula.modeller.rule.visual.MainInfoTableVisualization;
+import nl.tudelft.granula.modeller.rule.visual.TableVisualization;
 
 import java.util.ArrayList;
 
@@ -42,9 +42,8 @@ public class PowergraphJob extends nl.tudelft.granula.modeller.platform.operatio
         String summary = "PowergraphJob.";
         addInfoDerivation(new SimpleSummaryDerivation(11, summary));
 
-        addVisualDerivation(new MainInfoTableVisualization(1,
+        addVisualDerivation(new TableVisualization(1, "MainInfo",
                 new ArrayList<String>() {{
-//                    add("InputMethod");
                 }}));
     }
 
